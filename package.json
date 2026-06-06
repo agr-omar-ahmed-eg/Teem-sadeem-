@@ -1,0 +1,9 @@
+{
+  "name": "baron-quiz-generator",
+  "version": "1.0.0",
+  "description": "تحويل الصور لاختبارات جوجل باستخدام جميناي",
+  "main": "index.html",
+  "dependencies": {
+    "@google/genai": "^0.1.1"
+  }
+}
