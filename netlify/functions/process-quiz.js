@@ -30,7 +30,14 @@ exports.handler = async (event, context) => {
             generationConfig: { responseMimeType: "application/json" }
         });
 
-        const extractedQuestions = JSON.parse(aiResponse.text);
+       let cleanText = aiResponse.text.trim();
+if (cleanText.startsWith("```json")) {
+    cleanText = cleanText.substring(7, cleanText.length - 3).trim();
+} else if (cleanText.startsWith("```")) {
+    cleanText = cleanText.substring(3, cleanText.length - 3).trim();
+}
+const extractedQuestions = JSON.parse(cleanText);
+
 
         // 3. إرسال الـ JSON الناتج إلى رابط جوجل سكريبت لإنشاء الفورم
         const googleResponse = await fetch(googleScriptUrl, {
